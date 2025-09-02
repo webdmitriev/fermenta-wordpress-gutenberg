@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   // плавный скролл
-  $("a.ancLinks").click(function () {
+  $("a.ancLinks, li.ancLinks a").click(function () {
     var elementClick = $(this).attr("href");
 
     if ($("body").find(`${elementClick}`).length) {

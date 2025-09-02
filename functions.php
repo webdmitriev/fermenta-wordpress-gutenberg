@@ -50,6 +50,7 @@ function webdmitriev_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'webdmitriev' ),
+			'Header menu' => esc_html__( 'Header menu', 'webdmitriev' ),
 		)
 	);
 
@@ -93,8 +94,8 @@ function webdmitriev_setup() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 250,
-			'width'       => 250,
+			'height'      => 100,
+			'width'       => 33,
 			'flex-width'  => true,
 			'flex-height' => true,
 		)

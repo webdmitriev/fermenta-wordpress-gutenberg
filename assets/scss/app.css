@@ -652,7 +652,7 @@ nav.mainnav {
   transition: all 0.3s ease-in-out;
 }
 
-#mainnav ul.submenu {
+#mainnav ul.sub-menu {
   position: absolute;
   left: 0;
   top: 150%;
@@ -675,11 +675,11 @@ nav.mainnav {
   margin-left: 0;
 }
 
-#mainnav ul.submenu {
+#mainnav ul.sub-menu {
   padding: 10px;
 }
 
-#mainnav ul.submenu > li > a {
+#mainnav ul.sub-menu > li > a {
   display: block;
   padding: 10px;
   line-height: 1.4;
@@ -692,12 +692,12 @@ nav.mainnav {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-#mainnav ul.submenu > li > a:hover {
+#mainnav ul.sub-menu > li > a:hover {
   padding-left: 20px;
   background-color: #cebbab;
 }
 
-#mainnav ul li.menu-item-has-children.open ul.submenu {
+#mainnav ul li.menu-item-has-children.open ul.sub-menu {
   top: 130%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
@@ -710,7 +710,7 @@ nav.mainnav {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  #mainnav ul li:hover > ul.submenu {
+  #mainnav ul li:hover > ul.sub-menu {
     top: 130%;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);

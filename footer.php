@@ -11,6 +11,12 @@
 
 ?>
 
+  <footer class="footer">
+    <div class="container">
+      <span>© 2025 Ферментра</span>
+    </div>
+  </footer>
+</div>
 <?php wp_footer(); ?>
 
 </body>
