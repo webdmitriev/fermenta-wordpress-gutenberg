@@ -1,12 +1,12 @@
 # Fermenta - Wordpress (Gutenberg) project
 
 
-## 🚀 Возможности
+## 🚀 Possibilities
 - Custom Gutenberg blocks with acf
 - 
 
 
-## 🛠 Технологии
+## 🛠 Hard skills
 - HTML, SCSS, JQuery
 - PHP
 - 
