@@ -1,0 +1,81 @@
+.wpcf7-form-control-wrap[data-name="acceptance-895"] {
+  .wpcf7-list-item {
+    margin-left: 0;
+    label {
+      position: relative;
+      display: block;
+      padding-left: 0px;
+      min-height: 22px;
+      cursor: pointer;
+
+      // Скрываем нативный чекбокс
+      input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      // Состояние checked
+      input[type="checkbox"]:checked ~ .wpcf7-list-item-label {
+        &::before {
+          background-color: #e1a97f;
+          border-color: #e1a97f;
+        }
+
+        &::after {
+          opacity: 1;
+          transform: rotate(45deg) scale(1);
+        }
+      }
+
+      .wpcf7-list-item-label {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        padding-left: 44px;
+        font-size: 19px;
+        color: #dacdc2;
+
+        // Кастомный чекбокс
+        &::before {
+          content: "";
+          position: absolute;
+          top: 4px;
+          left: 0;
+          width: 28px;
+          height: 28px;
+          border: 1px solid #ccc;
+          border-radius: 1px;
+          background: white;
+          transition: all 0.3s ease;
+        }
+
+        // Галочка
+        &::after {
+          content: "";
+          position: absolute;
+          top: 10px;
+          left: 11px;
+          width: 6px;
+          height: 11px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg) scale(0);
+          opacity: 0;
+          transition: all 0.2s ease;
+        }
+
+        a {
+          color: #e1a97f;
+          text-decoration: underline;
+
+          &:hover {
+            color: #c28855;
+          }
+        }
+      }
+    }
+  }
+}

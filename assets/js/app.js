@@ -51,6 +51,42 @@ document.addEventListener('DOMContentLoaded', function () {
   $(".choice-data").on("click", ".choice-data__item", function () {
     $(this).parents(".choice-data").find(".choice-data__label").text($(this).text())
     $(this).parents(".choice-data").removeClass("_open")
+    $("[name='your-theme']").val($(this).text())
   })
+
+  $(".wpcf7-list-item").on("click", "label", function () {
+
+    let isCompleteAll = checkInputs($(this).parents(".contacts-form"))
+
+    if ($("input[type='checkbox']").prop('checked') && isCompleteAll) {
+      $(this).parents(".contacts-form").find("button").attr("disabled", false)
+    } else {
+      $("input[type='checkbox']").prop('checked', false)
+      $(this).parents(".contacts-form").find("button").attr("disabled", true)
+    }
+  })
+
+  function checkInputs(parent) {
+    let isValid = true;
+
+    $(parent)
+      .find("input.wpcf7-validates-as-required")
+      .each(function () {
+        if ($(this).val().trim() === "") {
+          isValid = false;
+          return false;
+        }
+      });
+
+    return isValid;
+  }
+
+  checkInputsChange()
+  function checkInputsChange() {
+    $(".contacts-form input.wpcf7-validates-as-required").on("change", function () {
+      $("input[type='checkbox']").prop('checked', false)
+      $(this).parents(".contacts-form").find("button").attr("disabled", true)
+    })
+  }
 
 });

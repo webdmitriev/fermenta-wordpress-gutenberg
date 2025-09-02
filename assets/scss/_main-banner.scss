@@ -7,13 +7,21 @@
     margin-bottom: 50px;
   }
   .descr {
-    text-align: center;
+    a {
+      display: block;
+      width: 100%;
+      font-size: 22px;
+      text-align: center;
+      &:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
   }
   .exclude-white {
     display: block;
     width: 38px;
     height: 51px;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
   }
 }
 

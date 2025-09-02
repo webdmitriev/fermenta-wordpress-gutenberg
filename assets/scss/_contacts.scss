@@ -60,7 +60,9 @@
         textarea {
           display: block;
           width: 100%;
-          min-height: 228px;
+          min-height: 1px;
+          max-height: 228px;
+          padding: 8px 12px;
           background-color: $white;
         }
         .checkbox {
@@ -78,6 +80,18 @@
           font-size: 16px;
           line-height: 1.4;
           color: #d4cbc4;
+        }
+        .wpcf7-form-control-wrap {
+          .wpcf7-form-control.wpcf7-acceptance.optional {
+            .wpcf7-list-item {
+              label {
+                input {
+                }
+                .wpcf7-list-item-label {
+                }
+              }
+            }
+          }
         }
         &.form-group-submit {
           button {
@@ -111,6 +125,13 @@
         }
       }
     }
+    .wpcf7-not-valid-tip {
+      font-size: 14px;
+      color: $white;
+    }
+  }
+  .wpcf7 form .wpcf7-response-output {
+    color: $white;
   }
 }
 

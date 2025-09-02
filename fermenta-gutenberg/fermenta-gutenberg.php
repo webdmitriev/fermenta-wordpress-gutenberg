@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Admin
+ */
+require get_template_directory() . '/fermenta-gutenberg/admin.php';
+
+/**
  * Conference block categories
  */
 add_filter('block_categories_all', function($categories, $post) {
@@ -52,7 +57,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-02.jpg">'
         )
       )
     )
@@ -72,7 +77,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-03.jpg">'
         )
       )
     )
@@ -92,7 +97,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-04.jpg">'
         )
       )
     )
@@ -112,7 +117,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-05.jpg">'
         )
       )
     )
@@ -132,7 +137,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-06.jpg">'
         )
       )
     )
@@ -152,7 +157,147 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-01.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 08 - tests
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-08',
+    'title'           => __('Block - 08'),
+    'description'     => __('Что мы делаем?'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-08.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 09 - tests-data
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-09',
+    'title'           => __('Block - 09'),
+    'description'     => __('Что мы делаем - данные?'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-09.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 10 - tasks
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-10',
+    'title'           => __('Block - 10'),
+    'description'     => __('Задачи'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-10.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 11 - prayer
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-11',
+    'title'           => __('Block - 11'),
+    'description'     => __('Каждый проект индивидуален.'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-11.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 12 - products
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-12',
+    'title'           => __('Block - 12'),
+    'description'     => __('Products'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-12.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 13 - catalog-block
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-13',
+    'title'           => __('Block - 13'),
+    'description'     => __('Блок для скачивания файла'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-13.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
+  // 14 - advantages
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-14',
+    'title'           => __('Block - 14'),
+    'description'     => __('Преимущества'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-14.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
         )
       )
     )
@@ -169,6 +314,13 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
     'acf/fermenta-block-05',
     'acf/fermenta-block-06',
     'acf/fermenta-block-07',
+    'acf/fermenta-block-08',
+    'acf/fermenta-block-09',
+    'acf/fermenta-block-10',
+    'acf/fermenta-block-11',
+    'acf/fermenta-block-12',
+    'acf/fermenta-block-13',
+    'acf/fermenta-block-14',
     'core/image'
   );
 }, 10, 2);

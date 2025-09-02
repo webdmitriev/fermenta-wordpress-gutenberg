@@ -12,9 +12,23 @@ $allowed_tags = array(
   'br'   => array()
 );
 
-$title    = get_field('title');
-$image    = get_field('image');
-$bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field('bg_1920')) . ")"  : false;
+$colors = [
+  'white'      => '#ffffff',
+  'black'      => '#313131',
+  'oatmeal'    => '#dacdc2',
+  'taupe'      => '#6e6259',
+  'eucalyptus' => '#8ca086',
+  'maroon'     => '#7e4c4d',
+];
+
+$title        = get_field('title');
+$title_color_params  = get_field('title_color') ?: '';
+$title_color  = $colors[strtolower($title_color_params)] ?? '#dacdc2';
+
+$is_icon      = get_field('is_icon');
+$is_catalog   = get_field('is_catalog');
+$is_map       = get_field('is_map');
+$bg_1920      = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field('bg_1920')) . ")"  : false;
 
 ?>
 
@@ -28,8 +42,16 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
 
   <?php if( !is_admin() ): ?>
     <div class="container">
-      <?php if($title): ?><h1 class="h1"><?php echo wp_kses($title, $allowed_tags); ?></h1><?php endif; ?>
-      <?php if($image): ?><img class="exclude-white" src="<?php echo esc_url($image); ?>" alt="" /><?php endif; ?>
+      <?php if($title): ?><h1 class="h1" style="color: <?php echo esc_attr($title_color); ?>"><?php echo wp_kses($title, $allowed_tags); ?></h1><?php endif; ?>
+
+      <?php if($is_icon): ?><img class="exclude-white" src="<?= $url; ?>/assets/img/icons/exclude-white.svg" alt="Icon" /><?php endif; ?>
+
+      <?php if($is_catalog || $is_map): ?>
+        <p class="descr">
+          <?php if($is_catalog): ?><a href="www" style="color: <?php echo esc_attr($title_color); ?>">Каталог продуктов</a><?php endif; ?>
+          <?php if($is_map): ?><a href="www" style="color: <?php echo esc_attr($title_color); ?>">Получить технологическую карту</a><?php endif; ?>
+        </p>
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 </section>
