@@ -857,6 +857,18 @@ nav.mainnav {
 .description .line-wrap {
   gap: 60px;
 }
+.description .line-wrap.description-left .h2 {
+  order: 1;
+}
+.description .line-wrap.description-left .descr {
+  order: 2;
+}
+.description .line-wrap.description-right .h2 {
+  order: 2;
+}
+.description .line-wrap.description-right .descr {
+  order: 1;
+}
 
 @media (max-width: 1540px) {
   .description {

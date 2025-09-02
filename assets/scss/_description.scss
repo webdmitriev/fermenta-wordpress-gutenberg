@@ -6,6 +6,22 @@
   background-color: $oatmeal;
   .line-wrap {
     gap: 60px;
+    &.description-left {
+      .h2 {
+        order: 1;
+      }
+      .descr {
+        order: 2;
+      }
+    }
+    &.description-right {
+      .h2 {
+        order: 2;
+      }
+      .descr {
+        order: 1;
+      }
+    }
   }
 }
 
