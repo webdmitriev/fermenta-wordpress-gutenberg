@@ -2,7 +2,7 @@
 
 
 ## 🚀 Возможности
-- 
+- Custom Gutenberg blocks with acf
 - 
 
 
