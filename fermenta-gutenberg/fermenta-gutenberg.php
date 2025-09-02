@@ -303,6 +303,26 @@ add_action('acf/init', function() {
     )
   ));
 
+  // 15 - contrast
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-15',
+    'title'           => __('Block - 15'),
+    'description'     => __('Текст и кнопка на фоне картинки'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-15.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+        )
+      )
+    )
+  ));
+
 });
 
 add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context) {
@@ -321,6 +341,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
     'acf/fermenta-block-12',
     'acf/fermenta-block-13',
     'acf/fermenta-block-14',
+    'acf/fermenta-block-15',
     'core/image'
   );
 }, 10, 2);
