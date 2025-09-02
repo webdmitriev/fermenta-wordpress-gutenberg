@@ -1,0 +1,53 @@
+.main-banner {
+  position: relative;
+  width: 100%;
+  min-height: 930px;
+  background: $oatmeal url("../img/main/main-01.jpg") center / cover no-repeat;
+  .h1 {
+    margin-bottom: 50px;
+  }
+  .descr {
+    text-align: center;
+  }
+  .exclude-white {
+    display: block;
+    width: 38px;
+    height: 51px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1540px) {
+  .main-banner {
+    min-height: 730px;
+  }
+}
+@media (max-width: 1440px) {
+  .main-banner {
+    min-height: 680px;
+  }
+}
+@media (max-width: 1199px) {
+  .main-banner {
+    min-height: 600px;
+  }
+}
+@media (max-width: 991px) {
+  .main-banner {
+    min-height: 480px;
+  }
+  .main-banner .h1 {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .main-banner {
+    min-height: 420px;
+  }
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

@@ -1,0 +1,66 @@
+.contrast {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-block: 380px 190px;
+  background: $oatmeal url("../img/contrast/contrast-01.jpg") center / cover no-repeat;
+  .contrast-block {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    .descr {
+      margin-bottom: 56px;
+      font-size: 24px;
+      color: $white;
+    }
+    .contrast-link {
+      display: block;
+      width: 100%;
+      max-width: max-content;
+      padding: 12px 18px;
+      font-family: $ff;
+      font-weight: 400;
+      font-size: 14px;
+      color: #6e6259;
+      background-color: #cfe2e9;
+    }
+  }
+}
+
+@media (max-width: 1540px) {
+}
+@media (max-width: 1440px) {
+  .contrast {
+    padding-block: 280px 140px;
+  }
+  .contrast .contrast-block {
+    max-width: 100%;
+  }
+  .contrast .contrast-block .descr {
+    text-align: center;
+  }
+  .contrast .contrast-block .contrast-link {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+  .contrast {
+    padding-block: 140px 90px;
+    .contrast-block .descr {
+      margin-bottom: 36px;
+    }
+  }
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 576px) {
+  .contrast {
+    padding-block: 100px 70px;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

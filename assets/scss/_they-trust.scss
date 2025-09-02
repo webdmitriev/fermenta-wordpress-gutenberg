@@ -1,0 +1,85 @@
+.they-trust {
+  position: relative;
+  width: 100%;
+  padding-block: 200px;
+  background: $oatmeal url("../img/they-trust/they-trust-01.jpg") center / cover no-repeat;
+  .line-wrap {
+    max-width: 830px;
+    margin: 0 0 0 auto;
+    padding-right: 210px;
+  }
+  .h2 {
+    margin-bottom: 60px;
+    color: $white;
+  }
+  .trust-items {
+    .trust-item {
+      img {
+        display: block;
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+      }
+      .descr {
+        max-width: calc(100% - 115px);
+        color: $white;
+      }
+      &:not(:last-child) {
+        margin-bottom: 44px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1540px) {
+  .they-trust {
+    padding-block: 170px;
+  }
+}
+@media (max-width: 1440px) {
+  .they-trust {
+    padding-block: 130px;
+  }
+  .they-trust .line-wrap {
+    max-width: 730px;
+    padding-right: 110px;
+  }
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+  .they-trust {
+    padding-block: 90px;
+    .line-wrap {
+      margin: 0;
+      padding: 0;
+    }
+    .h2 {
+      margin-bottom: 30px;
+    }
+    .trust-items .trust-item .descr {
+      max-width: calc(100% - 75px);
+    }
+  }
+}
+@media (max-width: 767px) {
+  .they-trust {
+    padding-block: 60px;
+    .h2 {
+      margin-bottom: 20px;
+    }
+    .trust-items .trust-item img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+  .they-trust .trust-items .trust-item:not(:last-child) {
+    margin-bottom: 28px;
+  }
+}
+@media (max-width: 400px) {
+}

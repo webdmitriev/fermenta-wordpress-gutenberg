@@ -1,0 +1,122 @@
+.tests {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-block: 360px;
+  background: $oatmeal url("../img/tests/tests-bg-01.jpg") center / cover;
+  .container {
+    max-width: 1100px;
+  }
+}
+
+.tests-data {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-block: 124px 60px;
+  background-color: $oatmeal;
+  .container {
+    max-width: 1166px;
+  }
+  .tests-items {
+    gap: 62px;
+    .tests-item {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      img {
+        display: block;
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+        margin-bottom: 16px;
+      }
+      .tests-item__title {
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+        font-family: $ff;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.3;
+        color: #6e6259;
+      }
+      .tests-item__descr {
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+        font-family: $ff;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.3;
+        color: #6e6259;
+      }
+      .tests-item__excerpt {
+        position: relative;
+        display: block;
+        width: 100%;
+        font-family: $ff;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.3;
+        letter-spacing: 0.02em;
+        color: #6e6259;
+      }
+    }
+  }
+}
+
+@media (max-width: 1540px) {
+  .tests {
+    padding-block: 280px;
+  }
+}
+@media (max-width: 1440px) {
+  .tests {
+    padding-block: 220px;
+  }
+
+  .tests-data {
+    padding-block: 80px 52px;
+  }
+}
+@media (max-width: 1199px) {
+  .tests {
+    padding-block: 160px;
+  }
+  .tests-data .tests-items {
+    justify-content: space-around;
+    gap: 50px 30px;
+  }
+  .tests-data .tests-items .tests-item {
+    max-width: 300px;
+  }
+  .tests-data .tests-items .tests-item img {
+    height: 280px;
+  }
+}
+@media (max-width: 991px) {
+  .tests {
+    padding-block: 120px;
+  }
+  .tests-data .tests-items .tests-item .tests-item__title {
+    font-size: 20px;
+  }
+  .tests-data .tests-items .tests-item .tests-item__descr {
+    font-size: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .tests {
+    padding-block: 50px;
+  }
+  .tests-data {
+    padding-block: 40px 22px;
+  }
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}
