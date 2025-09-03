@@ -3,79 +3,84 @@ $url = get_template_directory_uri();
 
 $blocks = [
   [
+    'name' => 'Цвет',
+    'image' => $url.'/fermenta-gutenberg/images/block-01.jpg',
+    'video' => $url.'/fermenta-gutenberg/images/video-00.mov'
+  ],
+  [
     'name' => 'Block-01',
     'image' => $url.'/fermenta-gutenberg/images/block-01.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-01.mov'
   ],
   [
     'name' => 'Block-02',
     'image' => $url.'/fermenta-gutenberg/images/block-02.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-02.mov'
   ],
   [
     'name' => 'Block-03',
     'image' => $url.'/fermenta-gutenberg/images/block-03.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-03.mov'
   ],
   [
     'name' => 'Block-04',
     'image' => $url.'/fermenta-gutenberg/images/block-04.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-04.mov'
   ],
   [
     'name' => 'Block-05',
     'image' => $url.'/fermenta-gutenberg/images/block-05.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-05.mov'
   ],
   [
     'name' => 'Block-06',
     'image' => $url.'/fermenta-gutenberg/images/block-06.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-06.mov'
   ],
   [
     'name' => 'Block-07',
     'image' => $url.'/fermenta-gutenberg/images/block-07.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-07.mov'
   ],
   [
     'name' => 'Block-08',
     'image' => $url.'/fermenta-gutenberg/images/block-08.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-08.mov'
   ],
   [
     'name' => 'Block-09',
     'image' => $url.'/fermenta-gutenberg/images/block-09.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-09.mov'
   ],
   [
     'name' => 'Block-10',
     'image' => $url.'/fermenta-gutenberg/images/block-10.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-10.mov'
   ],
   [
     'name' => 'Block-11',
     'image' => $url.'/fermenta-gutenberg/images/block-11.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-11.mov'
   ],
   [
     'name' => 'Block-12',
     'image' => $url.'/fermenta-gutenberg/images/block-12.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-12.mov'
   ],
   [
     'name' => 'Block-13',
     'image' => $url.'/fermenta-gutenberg/images/block-13.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-13.mov'
   ],
   [
     'name' => 'Block-14',
     'image' => $url.'/fermenta-gutenberg/images/block-14.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-14.mov'
   ],
   [
     'name' => 'Block-15',
     'image' => $url.'/fermenta-gutenberg/images/block-15.jpg',
-    'video' => $url.'/fermenta-gutenberg/pages/ui-page/block-67.mov'
+    'video' => $url.'/fermenta-gutenberg/images/video-15.mov'
   ],
 ]
 ?>
