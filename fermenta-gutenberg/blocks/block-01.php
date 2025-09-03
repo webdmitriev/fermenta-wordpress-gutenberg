@@ -19,6 +19,7 @@ $colors = [
   'taupe'      => '#6e6259',
   'eucalyptus' => '#8ca086',
   'maroon'     => '#7e4c4d',
+  'pinkish'     => '#e9cccd',
 ];
 
 $title        = get_field('title');

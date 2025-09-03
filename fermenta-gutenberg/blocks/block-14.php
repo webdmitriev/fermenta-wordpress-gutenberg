@@ -16,7 +16,14 @@ $allowed_tags = array(
 $title  = wp_kses(get_field('title'), $allowed_tags);
 $params = get_field('params');
 
+$count = 0;
+
+if ($params && is_array($params)) {
+  $count = count($params);
+}
+
 ?>
+
 
 <!-- <?= $block_path; ?> (start) -->
 <section class="advantages">
@@ -31,7 +38,7 @@ $params = get_field('params');
       <?php if($title): ?><h3 class="h3"><?php echo $title; ?></h3><?php endif; ?>
 
       <?php if( have_rows('params') ) : ?>
-        <div class="advantages-items df-ce-fs w-100p">
+        <div class="advantages-items df-ce-fs w-100p" <?php echo $count >= 5 ? 'style="gap: 40px;"' : ''; ?>>
           <?php while ( have_rows('params') ) : the_row();
             $icon = get_sub_field('icon');
           ?>

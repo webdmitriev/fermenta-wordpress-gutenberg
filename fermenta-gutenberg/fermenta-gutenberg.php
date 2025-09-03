@@ -6,6 +6,11 @@
 require get_template_directory() . '/fermenta-gutenberg/admin.php';
 
 /**
+ * Custom page admin
+ */
+require get_template_directory() . '/fermenta-gutenberg/pages/ui.php';
+
+/**
  * Conference block categories
  */
 add_filter('block_categories_all', function($categories, $post) {
@@ -177,7 +182,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-08.jpg">'
         )
       )
     )
@@ -197,7 +202,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-09.jpg">'
         )
       )
     )
@@ -217,7 +222,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-10.jpg">'
         )
       )
     )
@@ -237,7 +242,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-11.jpg">'
         )
       )
     )
@@ -257,7 +262,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-12.jpg">'
         )
       )
     )
@@ -277,7 +282,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-13.jpg">'
         )
       )
     )
@@ -297,7 +302,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-14.jpg">'
         )
       )
     )
@@ -317,7 +322,7 @@ add_action('acf/init', function() {
       'attributes' => array(
         'mode' => 'preview',
         'data' => array(
-          'gutenberg_preview' => '<img src="' . $image . 'block-07.jpg">'
+          'gutenberg_preview' => '<img src="' . $image . 'block-15.jpg">'
         )
       )
     )

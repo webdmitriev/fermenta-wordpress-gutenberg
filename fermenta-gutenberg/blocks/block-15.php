@@ -14,6 +14,7 @@ $allowed_tags = array(
 );
 
 $title    = wp_kses(get_field('title'), $allowed_tags);
+$reverse  = get_field('reverse') ? 'style="margin: 0 0 0 auto;"' : '';
 $btn_text = wp_kses(get_field('btn_text'), $allowed_tags);
 $btn_link = esc_url(get_field('btn_link')) ?? '';
 $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field('bg_1920')) . ")"  : false;
@@ -30,7 +31,7 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
 
   <?php if( !is_admin() ) : ?>
     <div class="container">
-      <div class="contrast-block">
+      <div class="contrast-block" <?php echo $reverse; ?>>
         <?php if($title): ?><p class="descr"><?php echo $title; ?></p><?php endif; ?>
         <?php if($btn_text): ?><a href="<?php echo $btn_link; ?>" class="contrast-link"><?php echo $btn_text; ?></a><?php endif; ?>
       </div>
