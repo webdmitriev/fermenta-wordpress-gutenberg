@@ -328,6 +328,26 @@ add_action('acf/init', function() {
     )
   ));
 
+  // 16 - news
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-16',
+    'title'           => __('Block - 16'),
+    'description'     => __('Новости с фильтрами'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-16.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-15.jpg">'
+        )
+      )
+    )
+  ));
+
 });
 
 add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context) {
@@ -346,7 +366,8 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
     'acf/fermenta-block-12',
     'acf/fermenta-block-13',
     'acf/fermenta-block-14',
-    'acf/fermenta-block-15'
+    'acf/fermenta-block-15',
+    'acf/fermenta-block-16'
   );
 }, 10, 2);
 

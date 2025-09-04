@@ -2081,6 +2081,12 @@ nav.mainnav {
     padding-block: 180px 60px;
   }
 }
+.news-filters {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
 .overlay {
   position: fixed;
   top: 0;
