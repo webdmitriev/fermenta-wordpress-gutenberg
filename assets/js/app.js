@@ -89,4 +89,21 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
+
+  // news
+  $(".news-selectors").on("click", ".selector-label", function () {
+    const $thisSelector = $(this).parents(".news-selector");
+    const isAlreadyOpen = $thisSelector.hasClass("_open");
+
+    $(".news-selectors .news-selector").removeClass("_open");
+
+    if (!isAlreadyOpen) {
+      $thisSelector.addClass("_open");
+    }
+  });
+
+  $(".news-selectors").on("click", ".selector-item", function () {
+    $(this).toggleClass("active")
+  })
+
 });

@@ -29,7 +29,30 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
 
   <?php if( !is_admin() ) : ?>
     <div class="container">
-      news
+      <div class="news-search-bar">
+        <input type="text" name="search" placeholder="Поиск" />
+      </div>
+
+      <div class="news-selectors df-fs-ce w-100p">
+        <div class="news-selector">
+          <div class="selector-label">Тип</div>
+          <div class="selector-items">
+            <div class="selector-item">item 01</div>
+            <div class="selector-item">item 02</div>
+          </div>
+        </div>
+        <div class="news-selector">
+          <div class="selector-label">Категория</div>
+          <div class="selector-items">
+            <div class="selector-item">item 01</div>
+            <div class="selector-item">item 02</div>
+          </div>
+        </div>
+        <!-- <div class="news-selector">
+          item
+        </div> -->
+      </div>
+
     </div>
   <?php endif; ?>
 </section>
