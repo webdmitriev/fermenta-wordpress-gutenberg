@@ -29,25 +29,37 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
 
   <?php if( !is_admin() ) : ?>
     <div class="container">
-      <div class="news-search-bar">
-        <input type="text" name="search" placeholder="Поиск" />
-      </div>
+      <div class="news-search-bar"><input type="text" name="search" placeholder="Поиск" /></div>
 
       <div class="news-selectors df-fs-ce w-100p">
         <div class="news-selector">
           <div class="selector-label">Тип</div>
           <div class="selector-items">
-            <div class="selector-item">item 01</div>
-            <div class="selector-item">item 02</div>
+            <?php
+            $categories = get_categories();
+            if (!empty($categories)) :
+              foreach ($categories as $cat) : ?>
+                <div class="selector-item"><?php echo esc_html($cat->name); ?></div>
+              <?php endforeach;
+            endif;
+            ?>
           </div>
         </div>
+
         <div class="news-selector">
           <div class="selector-label">Категория</div>
           <div class="selector-items">
-            <div class="selector-item">item 01</div>
-            <div class="selector-item">item 02</div>
+            <?php
+            $tags = get_tags();
+            if (!empty($tags)) :
+              foreach ($tags as $tag) : ?>
+                <div class="selector-item"><?php echo esc_html($tag->name); ?></div>
+              <?php endforeach;
+            endif;
+            ?>
           </div>
         </div>
+
         <div class="news-calendar">
           <div id="open-calendar">Выбрать даты</div>
           <div id="calendar-container">
@@ -57,30 +69,28 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
       </div>
 
       <div class="news-articles">
-        <div class="news-article">
-          <div class="news-article__content">
-            <span class="news-article-ff news-article__date">date</span>
-            <h3 class="news-article-ff news-article__title">title</h3>
-            <p class="news-article-ff news-article__descr">descr</p>
-            <p class="news-article-ff news-article__link">Читать дальше</p>
-          </div>
-        </div>
-        <div class="news-article">
-          <div class="news-article__content">
-            <span class="news-article-ff news-article__date">date</span>
-            <h3 class="news-article-ff news-article__title">title</h3>
-            <p class="news-article-ff news-article__descr">descr</p>
-            <p class="news-article-ff news-article__link">Читать дальше</p>
-          </div>
-        </div>
-        <div class="news-article">
-          <div class="news-article__content">
-            <span class="news-article-ff news-article__date">date</span>
-            <h3 class="news-article-ff news-article__title">title</h3>
-            <p class="news-article-ff news-article__descr">descr</p>
-            <p class="news-article-ff news-article__link">Читать дальше</p>
-          </div>
-        </div>
+        <?php
+          $args = array(
+            'post_type' 			=> 'post',
+            'posts_per_page' 	=> 99,
+            'order' 					=> 'DESC',
+          );
+          query_posts( $args );
+
+          if (have_posts()) : while (have_posts()) : the_post();
+          $thumbnail = get_the_post_thumbnail_url();
+        ?>
+          <a href="<?php the_permalink(); ?>" class="news-article" style="background-image: url(<?= $thumbnail; ?>)">
+            <div class="news-article__content">
+              <span class="news-article-ff news-article__date"><?php echo get_the_date('n-j-Y'); ?></span>
+              <h3 class="news-article-ff news-article__title"><?php the_title(); ?></h3>
+              <p class="news-article-ff news-article__descr">descr</p>
+              <p class="news-article-ff news-article__link">Читать дальше</p>
+            </div>
+          </a>
+        <?php endwhile; endif; ?>
+        <?php wp_reset_query(); ?>
+
       </div>
 
     </div>

@@ -2103,7 +2103,6 @@ nav.mainnav {
   font-weight: 400;
   font-size: 18px;
   line-height: 1.1;
-  text-transform: uppercase;
   color: #6e6259;
   background-color: #ffffff;
 }
@@ -2195,7 +2194,7 @@ nav.mainnav {
   transform: rotate(180deg);
 }
 .news-filters .news-selectors .news-selector._open .selector-items {
-  max-height: 156px;
+  max-height: 256px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   background-color: #ffffff;

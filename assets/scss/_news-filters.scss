@@ -17,7 +17,6 @@
       font-weight: 400;
       font-size: 18px;
       line-height: 1.1;
-      text-transform: uppercase;
       color: #6e6259;
       background-color: $white;
       &::placeholder {
@@ -109,7 +108,7 @@
           transform: rotate(180deg);
         }
         .selector-items {
-          max-height: 156px;
+          max-height: 256px;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
           filter: alpha(opacity=100);
           background-color: $white;
