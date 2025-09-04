@@ -12,6 +12,13 @@
       margin-bottom: 56px;
       font-size: 24px;
       color: $white;
+      &.descr-bigger {
+        font-family: $ff;
+        font-weight: 700;
+        font-size: 80px;
+        line-height: 1.2;
+        color: #493a2f;
+      }
     }
     .contrast-link {
       display: block;
@@ -39,6 +46,9 @@
   .contrast .contrast-block .descr {
     text-align: center;
   }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 64px;
+  }
   .contrast .contrast-block .contrast-link {
     margin: 0 auto;
   }
@@ -52,12 +62,18 @@
       margin-bottom: 36px;
     }
   }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 48px;
+  }
 }
 @media (max-width: 767px) {
 }
 @media (max-width: 576px) {
   .contrast {
     padding-block: 100px 70px;
+  }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 42px;
   }
 }
 @media (max-width: 460px) {

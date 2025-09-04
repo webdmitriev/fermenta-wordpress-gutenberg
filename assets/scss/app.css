@@ -1169,6 +1169,10 @@ nav.mainnav {
   bottom: 68px;
   left: 36px;
 }
+.services .services-item.without-btn {
+  align-content: center;
+  padding-block: 40px;
+}
 
 @media (max-width: 1540px) {
   .services {
@@ -1661,6 +1665,13 @@ nav.mainnav {
   font-size: 24px;
   color: #ffffff;
 }
+.contrast .contrast-block .descr.descr-bigger {
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 1.2;
+  color: #493a2f;
+}
 .contrast .contrast-block .contrast-link {
   display: block;
   width: 100%;
@@ -1683,6 +1694,9 @@ nav.mainnav {
   .contrast .contrast-block .descr {
     text-align: center;
   }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 64px;
+  }
   .contrast .contrast-block .contrast-link {
     margin: 0 auto;
   }
@@ -1694,10 +1708,16 @@ nav.mainnav {
   .contrast .contrast-block .descr {
     margin-bottom: 36px;
   }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 48px;
+  }
 }
 @media (max-width: 576px) {
   .contrast {
     padding-block: 100px 70px;
+  }
+  .contrast .contrast-block .descr.descr-bigger {
+    font-size: 42px;
   }
 }
 .tests {
