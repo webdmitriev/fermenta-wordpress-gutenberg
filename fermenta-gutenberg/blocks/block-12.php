@@ -37,7 +37,10 @@ $descr    = wp_kses(get_field('descr'), $allowed_tags);
           <?php if( have_rows('products') ) : while ( have_rows('products') ) : the_row();
             $thumbnail = get_sub_field('image');
           ?>
-            <div class="products-item"><img src="<?php echo $thumbnail ? esc_url($thumbnail) : $image_base64; ?>" alt="Image" /></div>
+            <div class="products-item">
+              <img src="<?php echo $thumbnail ? esc_url($thumbnail) : $image_base64; ?>" alt="Image" />
+              <a href="#" class="products-item__link">подробнее о товаре</a>
+            </div>
           <?php endwhile; endif; ?>
         </div>
       </div>

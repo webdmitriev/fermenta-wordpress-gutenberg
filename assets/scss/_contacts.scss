@@ -36,6 +36,9 @@
       display: block;
       width: 100%;
       max-width: 510px;
+      &.form-groups-inputs {
+        padding-top: 58px;
+      }
       .form-group {
         border-bottom: 1px solid #d4cbc4;
         .group-label {
@@ -170,6 +173,9 @@
         margin-bottom: 30px;
       }
     }
+  }
+  .contacts .contacts-form .form-groups.form-groups-inputs {
+    padding-top: 0;
   }
 }
 @media (max-width: 576px) {
