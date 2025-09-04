@@ -48,9 +48,39 @@ $bg_1920  = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field(
             <div class="selector-item">item 02</div>
           </div>
         </div>
-        <!-- <div class="news-selector">
-          item
-        </div> -->
+        <div class="news-calendar">
+          <div id="open-calendar">Выбрать даты</div>
+          <div id="calendar-container">
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-articles">
+        <div class="news-article">
+          <div class="news-article__content">
+            <span class="news-article-ff news-article__date">date</span>
+            <h3 class="news-article-ff news-article__title">title</h3>
+            <p class="news-article-ff news-article__descr">descr</p>
+            <p class="news-article-ff news-article__link">Читать дальше</p>
+          </div>
+        </div>
+        <div class="news-article">
+          <div class="news-article__content">
+            <span class="news-article-ff news-article__date">date</span>
+            <h3 class="news-article-ff news-article__title">title</h3>
+            <p class="news-article-ff news-article__descr">descr</p>
+            <p class="news-article-ff news-article__link">Читать дальше</p>
+          </div>
+        </div>
+        <div class="news-article">
+          <div class="news-article__content">
+            <span class="news-article-ff news-article__date">date</span>
+            <h3 class="news-article-ff news-article__title">title</h3>
+            <p class="news-article-ff news-article__descr">descr</p>
+            <p class="news-article-ff news-article__link">Читать дальше</p>
+          </div>
+        </div>
       </div>
 
     </div>

@@ -97,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(".news-selectors .news-selector").removeClass("_open");
 
+    $("#calendar-container").hide();
+    $("#open-calendar").removeClass("_open")
+
     if (!isAlreadyOpen) {
       $thisSelector.addClass("_open");
     }
@@ -105,5 +108,76 @@ document.addEventListener('DOMContentLoaded', function () {
   $(".news-selectors").on("click", ".selector-item", function () {
     $(this).toggleClass("active")
   })
+
+  $(function () {
+    let startDate = null;
+    let endDate = null;
+
+    // Локализация
+    $.datepicker.setDefaults({
+      closeText: 'Закрыть',
+      prevText: '‹',
+      nextText: '›',
+      currentText: 'Сегодня',
+      monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+      monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+        'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+      dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+      dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      weekHeader: 'Нед',
+      dateFormat: 'dd.mm.yy',
+      firstDay: 1
+    });
+
+    $("#calendar").datepicker({
+      onSelect: function (dateText, inst) {
+        let selected = $(this).datepicker("getDate");
+
+        if (!startDate || endDate) {
+          // если нет startDate или уже есть диапазон → начинаем заново
+          startDate = selected;
+          endDate = null;
+        } else if (selected >= startDate) {
+          // выбрали дату после startDate → ставим endDate
+          endDate = selected;
+        } else {
+          // если дата раньше startDate → меняем местами
+          endDate = startDate;
+          startDate = selected;
+        }
+
+        console.log("Диапазон:", formatDate(startDate), "-", endDate ? formatDate(endDate) : "...");
+        $(this).datepicker("refresh");
+      },
+      beforeShowDay: function (date) {
+        if (startDate && endDate) {
+          if (date >= startDate && date <= endDate) {
+            return [true, "range-date", "В диапазоне"];
+          }
+        } else if (startDate && +date === +startDate) {
+          return [true, "range-date", "Начало"];
+        }
+        return [true, "", ""];
+      }
+    });
+
+    // открыть календарь по кнопке
+    $("#open-calendar").on("click", function () {
+      $("#calendar-container").toggle();
+
+      $(this).toggleClass("_open")
+
+      $(".news-selectors .news-selector").removeClass("_open")
+    });
+
+    function formatDate(date) {
+      let d = String(date.getDate()).padStart(2, "0");
+      let m = String(date.getMonth() + 1).padStart(2, "0");
+      let y = date.getFullYear();
+      return d + "." + m + "." + y;
+    }
+  });
 
 });

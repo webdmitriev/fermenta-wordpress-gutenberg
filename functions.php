@@ -143,11 +143,13 @@ function webdmitriev_scripts() {
 	wp_style_add_data( 'webdmitriev-style', 'rtl', 'replace' );
 
 	wp_enqueue_style( 'webdmitriev-style-css', get_template_directory_uri() . '/assets/scss/app.css', array(), _S_VERSION );
+	wp_enqueue_style( 'webdmitriev-jquery-ui-css', 'https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css', array(), _S_VERSION );
 
 	wp_deregister_script( 'jquery' );
 	wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.1.min.js', false, null, false );
 	wp_enqueue_script( 'jquery' );
 
+	wp_enqueue_script( 'webdmitriev-jquery-ui-js', 'https://code.jquery.com/ui/1.13.2/jquery-ui.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'webdmitriev-slick', get_template_directory_uri() . '/assets/slick/slick.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'webdmitriev-slider', get_template_directory_uri() . '/assets/js/slider.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'webdmitriev-app', get_template_directory_uri() . '/assets/js/app.js', array(), _S_VERSION, true );

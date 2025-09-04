@@ -1,0 +1,107 @@
+#calendar-container {
+  display: none;
+  margin-top: 10px;
+}
+#calendar {
+  font-size: 14px;
+}
+#open-calendar {
+  display: inline-block;
+  padding: 10px 15px;
+  background: transparent;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* выделение отдельных выбранных дат (класс из примера: .selected-date) */
+.selected-date a {
+  color: #fff !important;
+  background: #1a73e8 !important;
+  border-radius: 0% !important;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15);
+}
+
+/* диапазон дат (класс из примера: .range-date) */
+.range-date a {
+  color: $oatmeal !important;
+  background: rgba(#7e4c4d, 0.6) !important;
+  border-radius: 0 !important;
+}
+
+/* если используешь отдельные классы для начала/конца диапазона */
+.range-start a,
+.range-end a {
+  color: #fff !important;
+  background: #1a73e8 !important;
+  border-radius: 0% !important;
+}
+
+/* ховер по дням (необязательно) */
+.ui-datepicker-calendar td a:hover {
+  filter: brightness(0.85);
+}
+
+/* сегодняшний день (опционально) */
+.ui-datepicker-today a {
+  border: 1px solid #1a73e8 !important;
+  border-radius: 0% !important;
+}
+
+.news-calendar {
+  #open-calendar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: max-content;
+    padding: 10px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #6e6259;
+    background-color: #ffffff;
+    border-radius: 0;
+    cursor: pointer;
+    &:after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 9px;
+      margin-left: 18px;
+      background: url("../img/icons/icon-bottom-dark.svg") center / contain no-repeat;
+    }
+    &._open:after {
+      transition: all 0.4s ease;
+      transform: rotate(180deg);
+    }
+  }
+  #calendar-container {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+  }
+}
+
+@media (max-width: 1540px) {
+}
+@media (max-width: 1440px) {
+}
+@media (max-width: 1199px) {
+}
+@media (max-width: 991px) {
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 576px) {
+  .news-calendar #open-calendar {
+    justify-content: space-between;
+  }
+}
+@media (max-width: 460px) {
+}
+@media (max-width: 400px) {
+}

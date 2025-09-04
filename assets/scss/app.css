@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import "../slick/slick.min.css";
 @import "../slick/slick-theme.min.css";
 @import "../fonts/stylesheet.css";
@@ -2112,6 +2113,7 @@ nav.mainnav {
 .news-filters .news-selectors {
   position: relative;
   gap: 38px;
+  margin-bottom: 50px;
   z-index: 8;
 }
 .news-filters .news-selectors .news-selector {
@@ -2131,7 +2133,6 @@ nav.mainnav {
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
-  text-transform: uppercase;
   color: #6e6259;
   cursor: pointer;
 }
@@ -2186,6 +2187,13 @@ nav.mainnav {
   height: 7px;
   background-color: #6e6259;
 }
+.news-filters .news-selectors .news-selector._open {
+  z-index: 12;
+}
+.news-filters .news-selectors .news-selector._open .selector-label:after {
+  transition: all 0.4s ease;
+  transform: rotate(180deg);
+}
 .news-filters .news-selectors .news-selector._open .selector-items {
   max-height: 156px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -2195,7 +2203,220 @@ nav.mainnav {
   visibility: visible;
   overflow-y: scroll;
 }
+.news-filters .news-selectors .news-calendar {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: max-content;
+}
+.news-filters .news-articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+}
+.news-filters .news-articles .news-article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-end;
+  width: 100%;
+  max-width: calc(50% - 25px);
+  height: 524px;
+  background: url("../img/news/post-01.jpg") center/cover no-repeat;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.news-filters .news-articles .news-article .news-article__content {
+  display: block;
+  width: 100%;
+  max-width: calc(100% - 80px);
+  padding: 16px 26px;
+  background-color: #ffffff;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article-ff {
+  display: block;
+  width: 100%;
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #313131;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article__date {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 4px;
+  font-size: 24px;
+  overflow: hidden;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article__descr {
+  margin-bottom: 19px;
+  font-size: 10px;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article__link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+}
+.news-filters .news-articles .news-article .news-article__content .news-article__link:after {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  background: url("../img/icons/icon-arrow-right.svg") center/contain no-repeat;
+}
 
+@media (max-width: 1440px) {
+  .news-filters .news-articles .news-article {
+    height: 440px;
+  }
+}
+@media (max-width: 991px) {
+  .news-filters .news-articles {
+    gap: 24px;
+  }
+  .news-filters .news-articles .news-article {
+    max-width: calc(50% - 12px);
+    height: 360px;
+  }
+}
+@media (max-width: 767px) {
+  .news-filters .news-articles .news-article {
+    max-width: 680px;
+    height: 420px;
+  }
+}
+@media (max-width: 576px) {
+  .news-filters .news-selectors {
+    gap: 20px;
+  }
+  .news-filters .news-selectors .news-selector,
+  .news-filters .news-selectors .news-calendar {
+    max-width: 100%;
+  }
+  .news-calendar #open-calendar {
+    max-width: 100% !important;
+  }
+  .news-filters .news-selectors .news-selector .selector-items {
+    border: 1px solid #7e4c4d;
+  }
+  .news-filters .news-selectors .news-selector .selector-label {
+    justify-content: space-between;
+  }
+  .news-filters .news-articles .news-article {
+    height: 380px;
+  }
+  .news-filters .news-articles .news-article .news-article__content {
+    padding: 8px 14px;
+    max-width: calc(100% - 40px);
+  }
+  .news-filters .news-articles .news-article .news-article__content .news-article__title {
+    font-size: 22px;
+  }
+}
+#calendar-container {
+  display: none;
+  margin-top: 10px;
+}
+
+#calendar {
+  font-size: 14px;
+}
+
+#open-calendar {
+  display: inline-block;
+  padding: 10px 15px;
+  background: transparent;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* выделение отдельных выбранных дат (класс из примера: .selected-date) */
+.selected-date a {
+  color: #fff !important;
+  background: #1a73e8 !important;
+  border-radius: 0% !important;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15);
+}
+
+/* диапазон дат (класс из примера: .range-date) */
+.range-date a {
+  color: #dacdc2 !important;
+  background: rgba(126, 76, 77, 0.6) !important;
+  border-radius: 0 !important;
+}
+
+/* если используешь отдельные классы для начала/конца диапазона */
+.range-start a,
+.range-end a {
+  color: #fff !important;
+  background: #1a73e8 !important;
+  border-radius: 0% !important;
+}
+
+/* ховер по дням (необязательно) */
+.ui-datepicker-calendar td a:hover {
+  filter: brightness(0.85);
+}
+
+/* сегодняшний день (опционально) */
+.ui-datepicker-today a {
+  border: 1px solid #1a73e8 !important;
+  border-radius: 0% !important;
+}
+
+.news-calendar #open-calendar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: max-content;
+  padding: 10px;
+  font-family: "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #6e6259;
+  background-color: #ffffff;
+  border-radius: 0;
+  cursor: pointer;
+}
+.news-calendar #open-calendar:after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 9px;
+  margin-left: 18px;
+  background: url("../img/icons/icon-bottom-dark.svg") center/contain no-repeat;
+}
+.news-calendar #open-calendar._open:after {
+  transition: all 0.4s ease;
+  transform: rotate(180deg);
+}
+.news-calendar #calendar-container {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+}
+
+@media (max-width: 576px) {
+  .news-calendar #open-calendar {
+    justify-content: space-between;
+  }
+}
 .overlay {
   position: fixed;
   top: 0;
