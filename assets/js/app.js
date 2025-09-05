@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.popup-video video').attr('src', '');
   })
 
+  // footer
+  $(".social-media").on("click", function () {
+    $(this).toggleClass("_open")
+  })
+
   // плавный скролл
   $("a.ancLinks, li.ancLinks a").click(function () {
     var elementClick = $(this).attr("href");
