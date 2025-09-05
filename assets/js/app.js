@@ -105,12 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // $(".news-selectors").on("click", ".selector-item", function () {
-  //   $(this).toggleClass("active")
-
-  //   newsFilter()
-  // })
-
   // calendar
   $(function () {
     window.selectedStartDate = null;
