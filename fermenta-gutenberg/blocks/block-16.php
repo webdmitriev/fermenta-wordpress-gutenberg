@@ -110,12 +110,12 @@ $args = array(
           ));
 
         ?>
-          <a href="<?php the_permalink(); ?>" class="news-article" style="background-image: url(<?= $thumbnail; ?>)" data-filter="<?php echo implode(', ', $all_categories); ?>" data-date="<?php echo get_field("date", get_the_ID()) ?>">
+          <a href="<?php the_permalink(); ?>" class="news-article" style="background-image: url(<?= $thumbnail; ?>)" data-filter="<?php echo implode(', ', $all_categories); ?>" data-date="<?php echo get_field("date", get_the_ID()) ?>" aria-label="Читать статью: <?php the_title_attribute(); ?> title="<?php the_title_attribute(); ?>">
             <div class="news-article__content">
               <span class="news-article-ff news-article__date"><?php echo get_field("date", get_the_ID()) ?></span>
               <h3 class="news-article-ff news-article__title"><?php the_title(); ?></h3>
-              <p class="news-article-ff news-article__descr"><?php echo wp_kses(get_field('descr', get_the_ID()), $allowed_tags) ?></p>
-              <p class="news-article-ff news-article__link">Читать дальше</p>
+              <p class="news-article-ff news-article__descr" itemprop="description"><?php echo wp_kses(get_field('descr', get_the_ID()), $allowed_tags) ?></p>
+              <p class="news-article-ff news-article__link" aria-hidden="true">Читать дальше</p>
             </div>
           </a>
         <?php endwhile; endif; ?>
