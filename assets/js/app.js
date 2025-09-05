@@ -105,13 +105,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  $(".news-selectors").on("click", ".selector-item", function () {
-    $(this).toggleClass("active")
-  })
+  // $(".news-selectors").on("click", ".selector-item", function () {
+  //   $(this).toggleClass("active")
 
+  //   newsFilter()
+  // })
+
+  // calendar
   $(function () {
-    let startDate = null;
-    let endDate = null;
+    window.selectedStartDate = null;
+    window.selectedEndDate = null;
 
     // Локализация
     $.datepicker.setDefaults({
@@ -135,28 +138,30 @@ document.addEventListener('DOMContentLoaded', function () {
       onSelect: function (dateText, inst) {
         let selected = $(this).datepicker("getDate");
 
-        if (!startDate || endDate) {
-          // если нет startDate или уже есть диапазон → начинаем заново
-          startDate = selected;
-          endDate = null;
-        } else if (selected >= startDate) {
-          // выбрали дату после startDate → ставим endDate
-          endDate = selected;
+        if (!window.selectedStartDate || window.selectedEndDate) {
+          window.selectedStartDate = selected;
+          window.selectedEndDate = null;
+        } else if (selected >= window.selectedStartDate) {
+          window.selectedEndDate = selected;
+          newsFilter(); // После выбора диапазона запускаем фильтрацию
+          updateSelectedFiltersDisplay(); // Обновляем отображение
         } else {
-          // если дата раньше startDate → меняем местами
-          endDate = startDate;
-          startDate = selected;
+          window.selectedEndDate = window.selectedStartDate;
+          window.selectedStartDate = selected;
+          newsFilter();
+          updateSelectedFiltersDisplay();
         }
 
-        console.log("Диапазон:", formatDate(startDate), "-", endDate ? formatDate(endDate) : "...");
+        console.log("Диапазон:", formatDate(window.selectedStartDate), "-",
+          window.selectedEndDate ? formatDate(window.selectedEndDate) : "...");
         $(this).datepicker("refresh");
       },
       beforeShowDay: function (date) {
-        if (startDate && endDate) {
-          if (date >= startDate && date <= endDate) {
+        if (window.selectedStartDate && window.selectedEndDate) {
+          if (date >= window.selectedStartDate && date <= window.selectedEndDate) {
             return [true, "range-date", "В диапазоне"];
           }
-        } else if (startDate && +date === +startDate) {
+        } else if (window.selectedStartDate && +date === +window.selectedStartDate) {
           return [true, "range-date", "Начало"];
         }
         return [true, "", ""];
@@ -166,10 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // открыть календарь по кнопке
     $("#open-calendar").on("click", function () {
       $("#calendar-container").toggle();
-
-      $(this).toggleClass("_open")
-
-      $(".news-selectors .news-selector").removeClass("_open")
+      $(this).toggleClass("_open");
+      $(".news-selectors .news-selector").removeClass("_open");
     });
 
     function formatDate(date) {
@@ -178,6 +181,438 @@ document.addEventListener('DOMContentLoaded', function () {
       let y = date.getFullYear();
       return d + "." + m + "." + y;
     }
+  });
+
+  // news - filter
+  $(".handler-filter").on("click", newsFilter)
+
+  function newsFilter() {
+    console.log('Фильтрация запущена');
+
+    const searchText = $('.news-search-input').val().trim();
+
+    // Если есть поисковый запрос - очищаем его при использовании фильтров
+    if (searchText !== '') {
+      clearSearch();
+    }
+
+    // Получаем выбранные категории
+    const selectedFilters = Array.from(
+      document.querySelectorAll('.news-filter-js .selector-item.active')
+    ).map(el => el.textContent.trim());
+
+    // Получаем выбранный диапазон дат
+    const startDate = window.selectedStartDate ? new Date(window.selectedStartDate) : null;
+    const endDate = window.selectedEndDate ? new Date(window.selectedEndDate) : null;
+    const hasDateFilter = startDate && endDate;
+
+    // Обновляем отображение выбранных фильтров
+    updateSelectedFiltersDisplay();
+
+    // Если нет активных фильтров - показываем все
+    if (selectedFilters.length === 0 && !hasDateFilter) {
+      $('.news-article').show();
+      $('#no-posts-message').hide();
+      $('#no-search-results').remove();
+      return;
+    }
+
+    let foundPosts = 0; // Счетчик найденных постов
+
+    $('.news-article').each((i, el) => {
+      const $el = $(el);
+      const articleFilters = $el.attr("data-filter");
+      const articleDateStr = $el.attr("data-date");
+
+      let matchesCategories = true;
+      let matchesDate = true;
+
+      // Проверяем категории (если есть выбранные)
+      if (selectedFilters.length > 0) {
+        if (!articleFilters) {
+          matchesCategories = false;
+        } else {
+          const articleFilterArray = articleFilters.split(',').map(f => f.trim());
+          matchesCategories = selectedFilters.some(filter =>
+            articleFilterArray.includes(filter)
+          );
+        }
+      }
+
+      // Проверяем дату (если выбран диапазон)
+      if (hasDateFilter && articleDateStr) {
+        const articleDate = parseDateString(articleDateStr);
+        if (articleDate) {
+          matchesDate = articleDate >= startDate && articleDate <= endDate;
+        } else {
+          matchesDate = false; // Если дата невалидна
+        }
+      }
+
+      // Показываем если совпадают все активные фильтры
+      if (matchesCategories && matchesDate) {
+        $el.show();
+        foundPosts++;
+      } else {
+        $el.hide();
+      }
+    });
+
+    // Показываем сообщение если нет результатов
+    if (foundPosts === 0) {
+      showNoPostsMessage(selectedFilters, startDate, endDate);
+    } else {
+      $('#no-posts-message').hide();
+    }
+
+    // Удаляем сообщение о поиске если оно есть
+    $('#no-search-results').remove();
+  }
+
+  // Функция для парсинга даты из формата "dd.mm.yyyy"
+  function parseDateString(dateStr) {
+    if (!dateStr) return null;
+
+    const parts = dateStr.split('.');
+    if (parts.length !== 3) return null;
+
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Месяцы в JS: 0-11
+    const year = parseInt(parts[2], 10);
+
+    if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+
+    return new Date(year, month, day);
+  }
+
+  // Обновленная функция для показа сообщения
+  function showNoPostsMessage(selectedFilters, startDate, endDate) {
+    let $message = $('#no-posts-message');
+
+    if ($message.length === 0) {
+      $message = $('<div id="no-posts-message" class="no-posts-message"></div>');
+      $('.news-articles').after($message);
+    }
+
+    // Формируем текст сообщения
+    let messageText = '';
+
+    if (selectedFilters.length > 0) {
+      messageText += `По категориям: <strong>${selectedFilters.join(', ')}</strong>`;
+    }
+
+    if (startDate && endDate) {
+      if (messageText) messageText += '<br>';
+      messageText += `За период: <strong>${formatDateDisplay(startDate)} - ${formatDateDisplay(endDate)}</strong>`;
+    }
+
+    $message.html(`
+        <div class="no-posts-content">
+            <h3>Постов не найдено</h3>
+            <p>${messageText}</p>
+            <p>Попробуйте изменить параметры фильтрации</p>
+            <button class="reset-filters-btn">Сбросить все фильтры</button>
+        </div>
+    `);
+
+    // Обработчик для кнопки сброса
+    $message.find('.reset-filters-btn').on('click', function () {
+      $('.news-filter-js .selector-item').removeClass('active');
+      resetDateFilter();
+      newsFilter();
+    });
+
+    $message.show();
+  }
+
+  // Функция для форматирования даты в читаемый вид
+  function formatDateDisplay(date) {
+    return date.toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  }
+
+  // Функция сброса фильтра дат
+  function resetDateFilter() {
+    window.selectedStartDate = null;
+    window.selectedEndDate = null;
+    $('#calendar').datepicker('setDate', null);
+    // Можно также сбросить визуальное отображение диапазона
+  }
+
+  // Функция для обновления отображения выбранных фильтров
+  function updateSelectedFiltersDisplay() {
+    const $display = $('#selected-filters-display');
+    const $list = $display.find('.selected-filters__list');
+
+    // Очищаем список
+    $list.empty();
+
+    // Получаем выбранные категории
+    const selectedCategories = Array.from(
+      document.querySelectorAll('.news-filter-js .selector-item.active')
+    ).map(el => ({
+      text: el.textContent.trim(),
+      type: 'category'
+    }));
+
+    // Получаем выбранный диапазон дат
+    const startDate = window.selectedStartDate;
+    const endDate = window.selectedEndDate;
+
+    let hasFilters = false;
+
+    // Добавляем категории
+    selectedCategories.forEach(category => {
+      $list.append(createFilterItem(category.text, 'category'));
+      hasFilters = true;
+    });
+
+    // Добавляем диапазон дат (если есть)
+    if (startDate && endDate) {
+      const dateRangeText = `${formatDateDisplay(startDate)} - ${formatDateDisplay(endDate)}`;
+      $list.append(createFilterItem(dateRangeText, 'date'));
+      hasFilters = true;
+    }
+
+    // Показываем или скрываем блок в зависимости от наличия фильтров
+    if (hasFilters) {
+      $display.slideDown(300);
+    } else {
+      $display.slideUp(300);
+    }
+  }
+
+  // Функция создания элемента фильтра
+  function createFilterItem(text, type) {
+    const isDate = type === 'date';
+    const cssClass = isDate ? 'selected-date-range' : 'selected-filter-item';
+
+    return `
+        <div class="${cssClass}">
+            <span>${text}</span>
+            <button class="selected-filter-item__remove" 
+                    data-type="${type}" 
+                    data-value="${isDate ? 'date-range' : encodeURIComponent(text)}">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 7L17 17M7 17L17 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    `;
+  }
+
+  // Обработчик удаления отдельного фильтра
+  $(document).on('click', '.selected-filter-item__remove', function () {
+    const $button = $(this);
+    const filterType = $button.data('type');
+    const filterValue = decodeURIComponent($button.data('value'));
+
+    if (filterType === 'category') {
+      // Находим и деактивируем соответствующий фильтр категории
+      $(`.news-filter-js .selector-item:contains("${filterValue}")`).removeClass('active');
+    } else if (filterType === 'date') {
+      // Сбрасываем фильтр дат
+      resetDateFilter();
+    }
+
+    // Запускаем фильтрацию и обновляем отображение
+    newsFilter();
+    updateSelectedFiltersDisplay();
+  });
+
+  // Обработчик кнопки "Очистить все"
+  $('.selected-filters__clear-all').on('click', function () {
+    // Сбрасываем категории
+    $('.news-filter-js .selector-item.active').removeClass('active');
+
+    // Сбрасываем даты
+    resetDateFilter();
+
+    // Запускаем фильтрацию и обновляем отображение
+    newsFilter();
+    updateSelectedFiltersDisplay();
+  });
+
+  // Функция очистки всех фильтров (кроме поиска)
+  function clearAllFilters() {
+    // Очищаем категории
+    $('.news-filter-js .selector-item.active').removeClass('active');
+
+    // Очищаем даты
+    resetDateFilter();
+
+    // Обновляем отображение выбранных фильтров
+    updateSelectedFiltersDisplay();
+  }
+
+  // Функция очистки поиска
+  function clearSearch() {
+    $('.news-search-input').val('');
+    $('.news-search-clear').hide();
+    // Убираем подсветку
+    $('.news-article').each(function () {
+      removeHighlights($(this));
+    });
+  }
+
+  // MARK: Поиск по названию
+  // Функция поиска по названию
+  // Функция поиска по названию
+  function newsSearch() {
+    const searchText = $('.news-search-input').val().trim().toLowerCase();
+
+    // Показываем/скрываем кнопку очистки
+    $('.news-search-clear').toggle(searchText.length > 0);
+
+    // Если поиск пустой - показываем все посты
+    if (searchText === '') {
+      $('.news-article').show();
+      $('#no-search-results').remove();
+      return;
+    }
+
+    // Очищаем фильтры при начале поиска
+    clearAllFilters();
+
+    let foundPosts = 0;
+
+    $('.news-article').each(function () {
+      const $article = $(this);
+      const title = $article.find('.news-article__title').text().toLowerCase();
+      const description = $article.find('.news-article__descr').text().toLowerCase();
+
+      // Ищем в заголовке и описании
+      const matchesTitle = title.includes(searchText);
+      const matchesDescription = description.includes(searchText);
+
+      if (matchesTitle || matchesDescription) {
+        $article.show();
+        foundPosts++;
+
+        // Подсвечиваем найденный текст
+        highlightSearchText($article, searchText);
+      } else {
+        $article.hide();
+        removeHighlights($article);
+      }
+    });
+
+    // Показываем сообщение если ничего не найдено
+    if (foundPosts === 0) {
+      showNoSearchResults(searchText);
+    } else {
+      $('#no-search-results').remove();
+    }
+  }
+
+  // Функция подсветки найденного текста
+  function highlightSearchText($element, searchText) {
+    // Удаляем предыдущие подсветки
+    removeHighlights($element);
+
+    // Подсвечиваем в заголовке
+    const $title = $element.find('.news-article__title');
+    const titleHtml = $title.html();
+    const highlightedTitle = titleHtml.replace(
+      new RegExp(searchText, 'gi'),
+      match => `<span class="search-highlight">${match}</span>`
+    );
+    $title.html(highlightedTitle);
+
+    // Подсвечиваем в описании (опционально)
+    const $description = $element.find('.news-article__descr');
+    const descrHtml = $description.html();
+    const highlightedDescr = descrHtml.replace(
+      new RegExp(searchText, 'gi'),
+      match => `<span class="search-highlight">${match}</span>`
+    );
+    $description.html(highlightedDescr);
+  }
+
+  // Функция удаления подсветки
+  function removeHighlights($element) {
+    $element.find('.search-highlight').each(function () {
+      $(this).replaceWith($(this).text());
+    });
+  }
+
+  // Функция показа сообщения "нет результатов поиска"
+  function showNoSearchResults(searchText) {
+    if ($('#no-search-results').length === 0) {
+      $('.news-articles').after(`
+            <div id="no-search-results" class="no-results-message">
+                <div class="no-results-content">
+                    <h3>Ничего не найдено</h3>
+                    <p>По запросу: <strong>"${searchText}"</strong></p>
+                    <p>Попробуйте изменить поисковый запрос</p>
+                </div>
+            </div>
+        `);
+    } else {
+      $('#no-search-results').find('strong').text(`"${searchText}"`);
+    }
+  }
+
+  // Обработчики событий
+  $(document).ready(function () {
+    // Поиск при вводе текста (с задержкой)
+    let searchTimeout;
+    $('.news-search-input').on('input', function () {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(function () {
+        newsSearch();
+      }, 300);
+    });
+
+    // Очистка поиска
+    $('.news-search-clear').on('click', function () {
+      clearSearch();
+      $('.news-article').show(); // Показываем все посты
+      $('#no-search-results').remove();
+    });
+
+    // Поиск при нажатии Enter
+    $('.news-search-input').on('keypress', function (e) {
+      if (e.which === 13) {
+        newsSearch();
+      }
+    });
+
+    // Обработчики фильтров
+    $('.news-filter-js .selector-item').on('click', function () {
+      $(this).toggleClass('active');
+      newsFilter(); // Используем обновленную функцию
+    });
+
+    // Обработчик для календаря
+    $("#calendar").datepicker({
+      onSelect: function (dateText, inst) {
+        let selected = $(this).datepicker("getDate");
+
+        if (!window.selectedStartDate || window.selectedEndDate) {
+          window.selectedStartDate = selected;
+          window.selectedEndDate = null;
+        } else if (selected >= window.selectedStartDate) {
+          window.selectedEndDate = selected;
+          newsFilter(); // Запускаем фильтрацию
+        } else {
+          window.selectedEndDate = window.selectedStartDate;
+          window.selectedStartDate = selected;
+          newsFilter();
+        }
+
+        $(this).datepicker("refresh");
+      }
+    });
+
+    // Обработчик сброса всех фильтров
+    $('.selected-filters__clear-all').on('click', function () {
+      clearAllFilters();
+      newsFilter();
+    });
   });
 
 });
