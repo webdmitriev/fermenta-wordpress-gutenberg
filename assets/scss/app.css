@@ -2871,16 +2871,18 @@ nav.mainnav {
   border-color: #7e4c4d;
   z-index: 2;
 }
-.social-media._open .social-telegram,
-.social-media._open .social-whatsapp {
+.social-media._open .social-item {
   opacity: 1;
   z-index: 10;
 }
-.social-media._open .social-telegram {
+.social-media._open .social-item:nth-child(2) {
   top: calc(50% - 55px);
 }
-.social-media._open .social-whatsapp {
-  top: calc(50% - 99px);
+.social-media._open .social-item:nth-child(3) {
+  top: calc(50% - 100px);
+}
+.social-media._open .social-item:nth-child(4) {
+  top: calc(50% - 145px);
 }
 
 @media (max-width: 991px) {

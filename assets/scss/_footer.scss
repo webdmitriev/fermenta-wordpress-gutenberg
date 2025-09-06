@@ -109,16 +109,18 @@
       border-color: $maroon;
       z-index: 2;
     }
-    .social-telegram,
-    .social-whatsapp {
+    .social-item {
       opacity: 1;
       z-index: 10;
-    }
-    .social-telegram {
-      top: calc(50% - 55px);
-    }
-    .social-whatsapp {
-      top: calc(50% - 99px);
+      &:nth-child(2) {
+        top: calc(50% - 55px);
+      }
+      &:nth-child(3) {
+        top: calc(50% - 100px);
+      }
+      &:nth-child(4) {
+        top: calc(50% - 145px);
+      }
     }
   }
 }
