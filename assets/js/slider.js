@@ -38,8 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     dots: false,
     centerMode: true,
     focusOnSelect: true,
-    prevArrow: $('.news-post .post-arrows .post-arrow-prev'),
-    nextArrow: $('.news-post .post-arrows .post-arrow-next'),
+    arrows: false,
     responsive: [
       {
         breakpoint: 768,

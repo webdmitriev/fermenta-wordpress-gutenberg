@@ -13,8 +13,10 @@ $allowed_tags = array(
   'br'   => array()
 );
 
-$text = wp_kses(get_field('text'), $allowed_tags);
-$link = esc_url(get_field('link'));
+$title    = wp_kses(get_the_title(), $allowed_tags);
+$date     = get_field('date', get_the_ID());
+$descr    = wp_kses(get_field('descr'), $allowed_tags);
+$gallery  = get_field('gallery');
 
 ?>
 
@@ -28,28 +30,24 @@ $link = esc_url(get_field('link'));
 
   <?php if( !is_admin() ) : ?>
     <div class="container pos-r z5">
-      <h2 class="h2 post-title">Выставка Винорус Краснодар 2025</h2>
-      <span class="post-date">23-25.04.25</span>
-      <div class="post-descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis odio cumque corporis non qui itaque, rerum sequi assumenda odit ratione, nostrum, ut vitae! Vero iste recusandae, blanditiis aliquam quidem architecto quibusdam a minus optio repellendus dolor pariatur. Facere, aliquam. Minus doloribus optio harum, id corporis repellat eaque consectetur aliquid itaque suscipit eius maxime maiores voluptatum rerum unde. Velit labore, ipsum eaque dolor dolorum culpa dignissimos, voluptates similique, sequi consequuntur accusamus doloremque nesciunt sint magni aut quam itaque repellendus enim quia provident a? Veritatis molestiae officia nemo iure voluptatibus, at nobis dolorum minima cum deleniti laudantium magnam omnis qui facere dicta ipsa laboriosam, rem, maxime reprehenderit autem? Cum eligendi odit accusantium recusandae aperiam impedit suscipit libero? Provident ratione dolore, perspiciatis nihil ex necessitatibus! Unde possimus tenetur voluptate pariatur reprehenderit cupiditate corrupti amet sunt repellendus, enim quo, similique distinctio aliquid? Excepturi odio similique, unde consequatur earum sit, corrupti enim odit omnis ducimus architecto assumenda error id cum magnam totam quos. Laborum perspiciatis possimus nobis harum modi suscipit accusantium asperiores facilis eveniet iusto vitae, tempore fugiat est eius nesciunt consectetur quasi. Voluptate, molestias. Autem incidunt excepturi accusantium ab, sed dolorum quae ullam quos dolor praesentium maxime, earum quod repudiandae ducimus. Laboriosam, fugiat porro!</div>
+      <?php if($title): ?><h2 class="h2 post-title"><?= $title; ?></h2><?php endif; ?>
+      <?php if($date): ?><span class="post-date"><?= $date; ?></span><?php endif; ?>
+      <?php if($descr): ?><div class="post-descr"><?= $descr; ?></div><?php endif; ?>
 
-      <div class="post-top-slider">
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-01.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-02.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-03.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-04.jpg" alt="" /></div>
-      </div>
 
-      <div class="post-bottom-slider">
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-01.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-02.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-03.jpg" alt="" /></div>
-        <div class="post-slide"><img src="<?= $url; ?>/assets/img/news-post/image-04.jpg" alt="" /></div>
-      </div>
+      <?php if( $gallery ): ?>
+        <div class="post-top-slider">
+          <?php foreach( $gallery as $image ): ?>
+            <div class="post-slide"><img src="<?= $image; ?>" alt="" /></div>
+          <?php endforeach; ?>
+        </div>
 
-      <div class="post-arrows">
-        <button class="post-arrow post-arrow-prev"></button>
-        <button class="post-arrow post-arrow-next"></button>
-      </div>
+        <div class="post-bottom-slider">
+          <?php foreach( $gallery as $image ): ?>
+            <div class="post-slide"><img src="<?= $image; ?>" alt="" /></div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
 
     </div>
   <?php endif; ?>
