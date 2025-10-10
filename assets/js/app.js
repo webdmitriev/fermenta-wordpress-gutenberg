@@ -614,4 +614,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // catalog-page - accardeon
+  $(".catalog-page").on("click", ".category-title", function () {
+    $(this).next().slideToggle()
+  })
+
 });
