@@ -13,8 +13,11 @@ $allowed_tags = array(
   'br'   => array()
 );
 
-$text = wp_kses(get_field('text'), $allowed_tags);
-$link = esc_url(get_field('link'));
+$image = get_field('image') ? esc_url(get_field('image')) : $image_base64;
+$params = get_field('params'); // param, value
+$descr = wp_kses(get_field('descr'), $allowed_tags);
+$schedule = get_field('schedule'); // (image)
+$btns = get_field('btns'); // btn_name, btn_file
 
 ?>
 
@@ -28,55 +31,27 @@ $link = esc_url(get_field('link'));
 
   <?php if( !is_admin() ) : ?>
     <div class="container">
-      <img src="<?= $url; ?>/assets/img/store-product/image-02.jpg" alt="www" class="product-thumbnail" />
+      <img src="<?= $image; ?>" alt="www" class="product-thumbnail" />
       <div class="product-params">
         <span class="params-title">Спецификация</span>
 
-        <div class="params-items">
-          <div class="params-item">Название</div>
-          <div class="params-item">Clarity</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Тип</div>
-          <div class="params-item">Ферментный препарат</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Назначение</div>
-          <div class="params-item">...</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Активность</div>
-          <div class="params-item">...</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Ремомендуемая температура и pH</div>
-          <div class="params-item">16-28ºС</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Форма</div>
-          <div class="params-item">Порошок/Лиофилизат</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Упаковка</div>
-          <div class="params-item">500г/10кг</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Артикул</div>
-          <div class="params-item">WFP-PC</div>
-        </div>
-        <div class="params-items">
-          <div class="params-item">Условия хранения</div>
-          <div class="params-item">Температура и влажность</div>
-        </div>
+        <?php if( have_rows('params') ): while ( have_rows('params') ): the_row(); ?>
+          <div class="params-items">
+            <div class="params-item"><?= get_sub_field('param'); ?></div>
+            <div class="params-item"><?= get_sub_field('value'); ?></div>
+          </div>
+        <?php endwhile; endif; ?>
+
         <button class="store-btn">Оставить заявку</button>
       </div>
       <div class="product-content">
-        <p class="descr">Clarity – это ферментный препарат, расщепляющий сложные полисахариды и глюканы, основные виновники помутнения и нестабильности вина. Он осветляет вино, предотвращает образование осадка и облегчает фильтрацию. Clarity гарантирует стабильность и чистоту вашего вина. Потребители оценят его безупречный вид и вкус. Он обеспечивает стабильность, прозрачность и улучшает фильтруемость, делая ваш продукт привлекательным для самых требовательных ценителей. Ваши вина будут сиять чистотой, радуя взгляд и вкус.</p>
-        <img src="<?= $url; ?>/assets/img/store-product/image-01.jpg" alt="www" />
-        <a href="#" class="store-btn" download>Спецификация (скачать)</a>
-        <a href="#" class="store-btn" download>Протокол испытаний (скачать)</a>
-        <a href="#" class="store-btn" download>Декларация (скачать)</a>
-        <a href="#" class="store-btn" download>сертификат качества (скачать)</a>
+        <?php if($descr): ?><p class="descr"><?= $descr; ?></p><?php endif; ?>
+        <?php if($schedule): ?><img src="<?= $schedule; ?>" alt="www" /><?php endif; ?>
+
+        <?php if( have_rows('btns') ): while ( have_rows('btns') ): the_row(); ?>
+          <a href="<?= get_sub_field('btn_file'); ?>" class="store-btn" download><?= get_sub_field('btn_name'); ?></a>
+        <?php endwhile; endif; ?>
+
       </div>
     </div>
   <?php endif; ?>

@@ -69,7 +69,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       align-content: flex-start;
-      gap: 20px 44px;
+      gap: 20px 40px;
       width: 100%;
       .descr {
         display: block;
@@ -87,7 +87,7 @@
         object-fit: cover;
       }
       .store-btn {
-        max-width: calc(50% - 23px);
+        max-width: calc(50% - 20px);
       }
     }
     .store-btn {
@@ -108,8 +108,14 @@
 }
 
 @media (max-width: 767px) {
+  .store-product .container .product-content {
+    gap: 20px 15px;
+  }
   .store-product .container .store-btn {
     font-size: 13px;
+  }
+  .store-product .container .product-content .store-btn {
+    max-width: calc(50% - 8px);
   }
 }
 @media (max-width: 576px) {

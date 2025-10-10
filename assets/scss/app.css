@@ -2868,7 +2868,7 @@ nav.mainnav {
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 20px 44px;
+  gap: 20px 40px;
   width: 100%;
 }
 .store-product .container .product-content .descr {
@@ -2887,7 +2887,7 @@ nav.mainnav {
   object-fit: cover;
 }
 .store-product .container .product-content .store-btn {
-  max-width: calc(50% - 23px);
+  max-width: calc(50% - 20px);
 }
 .store-product .container .store-btn {
   display: block;
@@ -2905,8 +2905,14 @@ nav.mainnav {
 }
 
 @media (max-width: 767px) {
+  .store-product .container .product-content {
+    gap: 20px 15px;
+  }
   .store-product .container .store-btn {
     font-size: 13px;
+  }
+  .store-product .container .product-content .store-btn {
+    max-width: calc(50% - 8px);
   }
 }
 @media (max-width: 576px) {
