@@ -29,7 +29,7 @@ $isDark = get_field("is_dark_or_light");
           <div class="services-item <?= get_sub_field('btn_text') ? '' : 'without-btn'; ?>" style="background-color: <?= $isDark ? '#dacdc2' : '#b2c4ad'; ?>">
             <?php if(get_sub_field('title')): ?><span class="services-item__title" style="color: <?= $isDark ? '#493a2f' : '#6f7e73'; ?>"><?php echo wp_kses(get_sub_field('title'), $allowed_tags); ?></span><?php endif; ?>
             <?php if(get_sub_field('descr')): ?><span class="services-item__descr" style="color: <?= $isDark ? '#493a2f' : '#6f7e73'; ?>"><?php echo wp_kses(get_sub_field('descr'), $allowed_tags); ?></span><?php endif; ?>
-            <?php if(get_sub_field('btn_text')): ?><button class="btn btn-gray" style="color: <?= $isDark ? '#493a2f' : '#6f7e73'; ?>;background-color: <?= $isDark ? '#b0a195' : '#b2c4ad'; ?>"><?php echo wp_kses(get_sub_field('btn_text'), $allowed_tags); ?></button><?php endif; ?>
+            <?php if(get_sub_field('btn_text')): ?><button class="btn btn-gray" style="color: <?= $isDark ? '#493a2f' : '#becdc2'; ?>;background-color: <?= $isDark ? '#b0a195' : '#6f7e73'; ?>"><?php echo wp_kses(get_sub_field('btn_text'), $allowed_tags); ?></button><?php endif; ?>
           </div>
         <?php endwhile; endif; ?>
       </div>
