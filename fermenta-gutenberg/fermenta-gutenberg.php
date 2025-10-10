@@ -393,6 +393,26 @@ add_action('acf/init', function() {
     )
   ));
 
+  // 19 - store-product
+  acf_register_block_type(array(
+    'name'            => 'fermenta-block-19',
+    'title'           => __('Block - 19'),
+    'description'     => __('Товар'),
+    'render_template' => 'fermenta-gutenberg/blocks/block-19.php',
+    'category'        => 'block_fermenta',
+    'icon'            => $icon,
+    'keywords'        => array('fermenta'),
+    'mode'            => 'preview',
+    'example' => array(
+      'attributes' => array(
+        'mode' => 'preview',
+        'data' => array(
+          'gutenberg_preview' => '<img src="' . $image . 'block-19.jpg">'
+        )
+      )
+    )
+  ));
+
 });
 
 add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context) {
@@ -415,6 +435,7 @@ add_filter('allowed_block_types_all', function($allowed_blocks, $editor_context)
     'acf/fermenta-block-16',
     'acf/fermenta-block-17',
     'acf/fermenta-block-18',
+    'acf/fermenta-block-19',
   );
 }, 10, 2);
 
