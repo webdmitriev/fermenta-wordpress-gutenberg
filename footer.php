@@ -52,6 +52,15 @@
     <a href="<?php echo $rule; ?><?php echo $link; ?>" target="_blank" rel="noopener noreferrer" class="social-item"><img src="<?php echo $icon; ?>" alt="icon" /></a>
     <?php endwhile; endif; ?>
   </div>
+
+  <div class="overlay"></div>
+
+  <div class="popup popup-store">
+    <div class="popup-close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 7L17 17M7 17L17 7" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+    <div class="popup-content scroll-line-none">
+      <?= do_shortcode('[contact-form-7 id="697933e" title="Re-call"]'); ?>
+    </div>
+  </div>
 </div>
 <?php wp_footer(); ?>
 

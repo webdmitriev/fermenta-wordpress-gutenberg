@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.popup-video video').attr('src', '');
   })
 
+  $("body").on("click", ".store-btn", function () {
+    $(".overlay").addClass("active")
+    $(".popup-store").addClass("active")
+  })
+
   // footer
   $(".social-media").on("click", function () {
     $(this).toggleClass("_open")
