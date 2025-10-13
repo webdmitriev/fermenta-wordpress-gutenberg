@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
   $("body").on("click", ".store-btn", function () {
     $(".overlay").addClass("active")
     $(".popup-store").addClass("active")
+
+    const itemsText = `URL: ${window.location.href}`;
+
+    const form = document.querySelector('.popup-store form');
+    if (!form) return;
+
+    const basketItemsInput = form.querySelector('input[name="your-order"]');
+    if (basketItemsInput) basketItemsInput.value = itemsText;
   })
 
   // footer
