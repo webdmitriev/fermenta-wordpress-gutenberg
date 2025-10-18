@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.popup-video video').attr('src', '');
   })
 
-  $("body").on("click", ".store-btn", function () {
+  $("body").on("click", ".store-btn-popup", function () {
     $(".overlay").addClass("active")
     $(".popup-store").addClass("active")
 

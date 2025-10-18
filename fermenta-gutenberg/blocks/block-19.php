@@ -42,7 +42,7 @@ $btns = get_field('btns'); // btn_name, btn_file
           </div>
         <?php endwhile; endif; ?>
 
-        <button class="store-btn">Оставить заявку</button>
+        <button class="store-btn store-btn-popup">Оставить заявку</button>
       </div>
       <div class="product-content">
         <?php if($descr): ?><p class="descr"><?= $descr; ?></p><?php endif; ?>
