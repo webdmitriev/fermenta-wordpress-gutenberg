@@ -59,7 +59,6 @@ $args = array(
           <div class="selector-items">
             <div class="selector-item">Новости</div>
             <div class="selector-item">Мероприятия</div>
-            <div class="selector-item">Писос</div>
           </div>
         </div>
 
