@@ -17,7 +17,7 @@ $title      = wp_kses(get_field('title'), $allowed_tags);
 $is_bigger  = get_field('is_bigger');
 $reverse    = get_field('reverse') ? 'style="margin: 0 0 0 auto;"' : '';
 $btn_text   = wp_kses(get_field('btn_text'), $allowed_tags);
-$btn_link   = esc_url(get_field('btn_link')) ?? '';
+$btn_link   = get_field('btn_link') ?? 0;
 $bg_1920    = get_field('bg_1920') ? "background-image: url(" . esc_url(get_field('bg_1920')) . ")"  : false;
 
 ?>
@@ -34,7 +34,7 @@ $bg_1920    = get_field('bg_1920') ? "background-image: url(" . esc_url(get_fiel
     <div class="container">
       <div class="contrast-block" <?php echo $reverse; ?>>
         <?php if($title): ?><p class="descr <?= $is_bigger ? 'descr-bigger' : ''; ?>"><?php echo $title; ?></p><?php endif; ?>
-        <?php if($btn_text): ?><a href="<?php echo $btn_link; ?>" class="contrast-link"><?php echo $btn_text; ?></a><?php endif; ?>
+        <?php if($btn_text): ?><a href="<?= esc_url(get_permalink($btn_link)); ?>" class="contrast-link"><?php echo $btn_text; ?></a><?php endif; ?>
       </div>
     </div>
   <?php endif; ?>
